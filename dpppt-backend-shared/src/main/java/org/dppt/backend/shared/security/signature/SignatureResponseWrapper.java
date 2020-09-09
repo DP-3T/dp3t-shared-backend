@@ -55,7 +55,10 @@ public class SignatureResponseWrapper extends HttpServletResponseWrapper {
     private static final String CLAIM_HASH_ALG = "hash-alg";
     private static final String CLAIM_CONTENT_HASH = "content-hash";
 
-    public SignatureResponseWrapper(HttpServletResponse response, KeyPair pair, int retentionDays,
+    public SignatureResponseWrapper(
+            HttpServletResponse response,
+            KeyPair pair,
+            int retentionDays,
             List<String> protectedHeaders) {
         super(response);
         this.pair = pair;
@@ -122,9 +125,12 @@ public class SignatureResponseWrapper extends HttpServletResponseWrapper {
         claims.setIssuer(ISSUER_DP3T);
         claims.setIssuedAt(
                 Date.from(OffsetDateTime.now().withOffsetSameInstant(ZoneOffset.UTC).toInstant()));
-        claims.setExpiration(Date.from(
-                OffsetDateTime.now().withOffsetSameInstant(ZoneOffset.UTC).plusDays(retentionPeriod)
-                        .toInstant()));
+        claims.setExpiration(
+                Date.from(
+                        OffsetDateTime.now()
+                                .withOffsetSameInstant(ZoneOffset.UTC)
+                                .plusDays(retentionPeriod)
+                                .toInstant()));
         for (String header : protectedHeaders) {
             if (!this.containsHeader(header)) {
                 continue;
@@ -134,9 +140,9 @@ public class SignatureResponseWrapper extends HttpServletResponseWrapper {
             String headerValue = this.getHeader(header);
             claims.put(normalizedHeader, headerValue);
             if (normalizedHeader.equals("batch-release-time")) {
-                OffsetDateTime issueDate = OffsetDateTime
-                        .ofInstant(Instant.ofEpochMilli(Long.parseLong(headerValue)),
-                                ZoneOffset.UTC);
+                OffsetDateTime issueDate =
+                        OffsetDateTime.ofInstant(
+                                Instant.ofEpochMilli(Long.parseLong(headerValue)), ZoneOffset.UTC);
                 claims.setIssuedAt(Date.from(issueDate.toInstant()));
                 claims.setExpiration(Date.from(issueDate.plusDays(retentionPeriod).toInstant()));
             }
@@ -146,7 +152,6 @@ public class SignatureResponseWrapper extends HttpServletResponseWrapper {
         this.setHeader(HEADER_DIGEST, "sha-256=" + Hex.toHexString(theHash));
         this.setHeader(HEADER_PUBLIC_KEY, getPublicKeyAsPEM());
         this.setHeader(HEADER_SIGNATURE, signature);
-
     }
 
     private String getPublicKeyAsPEM() throws IOException {
@@ -174,9 +179,7 @@ public class SignatureResponseWrapper extends HttpServletResponseWrapper {
         }
 
         @Override
-        public void setWriteListener(WriteListener listener) {
-
-        }
+        public void setWriteListener(WriteListener listener) {}
 
         @Override
         public void write(int b) throws IOException {
@@ -193,5 +196,4 @@ public class SignatureResponseWrapper extends HttpServletResponseWrapper {
             return this.digest.digest();
         }
     }
-
 }

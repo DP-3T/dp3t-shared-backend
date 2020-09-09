@@ -19,11 +19,11 @@ public class Version implements Comparable<Version> {
     // Pattern copied from
     // https://semver.org/#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string
     // and adapted for the mobile strings.
-    private final Pattern semVerPattern = Pattern.compile(
-            "^(?:(?<platform>ios|android)-)?(?<major>0|[1-9]\\d*)(\\.(?<minor>0|[1-9]\\d*))?(\\.(?<patch>0|[1-9]\\d*))?(?:-(?<prerelease>(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+(?<buildmetadata>[0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$");
+    private final Pattern semVerPattern =
+            Pattern.compile(
+                    "^(?:(?<platform>ios|android)-)?(?<major>0|[1-9]\\d*)(\\.(?<minor>0|[1-9]\\d*))?(\\.(?<patch>0|[1-9]\\d*))?(?:-(?<prerelease>(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+(?<buildmetadata>[0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$");
 
-    public Version() {
-    }
+    public Version() {}
 
     public Version(String versionString) {
         if (versionString == null) {
@@ -167,8 +167,7 @@ public class Version implements Comparable<Version> {
         return this;
     }
 
-    public Version preReleaseString(
-            String preReleaseString) {
+    public Version preReleaseString(String preReleaseString) {
         this.preReleaseString = preReleaseString;
         return this;
     }

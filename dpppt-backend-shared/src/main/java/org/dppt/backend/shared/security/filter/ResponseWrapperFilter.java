@@ -46,10 +46,9 @@ public class ResponseWrapperFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
-        SignatureResponseWrapper wrapper = new SignatureResponseWrapper(httpResponse, pair,
-                retentionDays, protectedHeaders);
+        SignatureResponseWrapper wrapper =
+                new SignatureResponseWrapper(httpResponse, pair, retentionDays, protectedHeaders);
         chain.doFilter(request, wrapper);
         wrapper.outputData(httpResponse.getOutputStream());
     }
-
 }
