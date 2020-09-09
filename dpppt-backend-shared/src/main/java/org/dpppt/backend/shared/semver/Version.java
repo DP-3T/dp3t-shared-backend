@@ -1,4 +1,4 @@
-package org.dppt.backend.shared.semver;
+package org.dpppt.backend.shared.semver;
 
 import java.util.Objects;
 import java.util.regex.Pattern;

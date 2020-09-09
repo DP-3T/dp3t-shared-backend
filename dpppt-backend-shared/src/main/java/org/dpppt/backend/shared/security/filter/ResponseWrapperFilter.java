@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: MPL-2.0
  */
 
-package org.dppt.backend.shared.security.filter;
+package org.dpppt.backend.shared.security.filter;
 
 import java.io.IOException;
 import java.security.KeyPair;
@@ -22,7 +22,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import org.dppt.backend.shared.security.signature.SignatureResponseWrapper;
+import org.dpppt.backend.shared.security.signature.SignatureResponseWrapper;
 
 public class ResponseWrapperFilter implements Filter {
 

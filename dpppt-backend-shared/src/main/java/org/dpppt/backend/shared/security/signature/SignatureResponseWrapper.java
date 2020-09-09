@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: MPL-2.0
  */
 
-package org.dppt.backend.shared.security.signature;
+package org.dpppt.backend.shared.security.signature;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

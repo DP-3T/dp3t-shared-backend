@@ -6,7 +6,6 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
-import org.dppt.backend.shared.semver.Version;
 import org.junit.Test;
 
 public class VersionTest {

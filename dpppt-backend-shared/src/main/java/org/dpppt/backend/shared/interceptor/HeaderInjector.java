@@ -1,4 +1,4 @@
-package org.dppt.backend.shared.interceptor;
+package org.dpppt.backend.shared.interceptor;
 
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
